@@ -5,5 +5,5 @@ import pl.warkoczewski.SpringAcademy_SpringSecurityModule_JWT_Client.model.Resta
 import java.util.List;
 
 public interface RestaurantService {
-    List<Restaurant> showRestaurants();
+    void showRestaurants();
 }
