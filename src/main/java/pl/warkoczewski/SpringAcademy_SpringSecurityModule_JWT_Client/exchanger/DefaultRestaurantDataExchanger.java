@@ -1,5 +1,7 @@
 package pl.warkoczewski.SpringAcademy_SpringSecurityModule_JWT_Client.exchanger;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -19,7 +21,11 @@ public class DefaultRestaurantDataExchanger implements RestaurantDataExchanger {
     }
     private HttpEntity getHttpEntity(){
         MultiValueMap<String, String> headers = new HttpHeaders();
-        headers.add("Authorization", "Bearer eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFkYW0gV2Fya29jemV3c2tpIiwiYWRtaW4iOnRydWUsImlhdCI6MTUxNjIzOTAyMn0.u0QiE8J4cwZoeDdEruL7bNGxH7Nf5m6ZgZ-vWjxEvJ3v7mBzzSywgbUdog_wjaNS01TnICzh8k1IYdzl0ACF-w");
+        headers.add("Authorization", getJwt(true));
         return new HttpEntity(headers);
+    }
+    private String getJwt(boolean isAdmin){
+        Algorithm algorithm = Algorithm.HMAC512("eShVmYq3t6w9y$B&E)H@McQfTjWnZr4u7x!A%C*F-JaNdRgUkXp2s5v8y/B?E(G+");
+        return "Bearer " + JWT.create().withClaim("admin", isAdmin).sign(algorithm);
     }
 }
