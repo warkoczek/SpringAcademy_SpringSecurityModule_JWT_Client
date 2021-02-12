@@ -21,13 +21,19 @@ public class RestaurantServiceImpl implements RestaurantService {
 
     @Override
     public Optional<List<Restaurant>> showRestaurants() {
-        Restaurant[] body = restaurantDataExchanger.exchange().getBody();
+        Restaurant[] body = restaurantDataExchanger.getRestaurants().getBody();
         if(body == null){
             return Optional.empty();
         }
         return Optional.of(Stream.of(body).collect(Collectors.toList()));
         //Stream.of(body).forEach(System.out::println);
     }
+
+    @Override
+    public Restaurant addRestaurant(Restaurant restaurant) {
+        return restaurantDataExchanger.addRestaurant(restaurant);
+    }
+
     @EventListener(ApplicationReadyEvent.class)
     public void printRestaurantsOut(){
         showRestaurants().ifPresent(System.out::println);

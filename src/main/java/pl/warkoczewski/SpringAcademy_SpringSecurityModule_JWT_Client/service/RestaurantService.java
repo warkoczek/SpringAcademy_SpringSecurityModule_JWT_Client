@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface RestaurantService {
     Optional<List<Restaurant>> showRestaurants();
+    Restaurant addRestaurant(Restaurant restaurant);
 }
