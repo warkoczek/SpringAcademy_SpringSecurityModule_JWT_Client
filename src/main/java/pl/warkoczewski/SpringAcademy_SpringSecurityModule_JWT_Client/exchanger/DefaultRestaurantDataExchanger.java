@@ -20,7 +20,6 @@ public class DefaultRestaurantDataExchanger implements RestaurantDataExchanger {
         return restTemplate.exchange("http://localhost:8080/restaurants", HttpMethod.GET, getHttpEntity(), Restaurant[].class);
 
     }
-
     private HttpEntity getHttpEntity(){
         MultiValueMap<String, String> headers = new HttpHeaders();
         headers.add("Authorization", getJwt(true));
