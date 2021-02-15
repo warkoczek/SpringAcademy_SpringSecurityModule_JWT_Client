@@ -1,5 +1,8 @@
 package pl.warkoczewski.SpringAcademy_SpringSecurityModule_JWT_Client.service;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
+
 public interface ClientJwtService {
-    String getJwt(boolean isAdmin);
+    String getJsonWebToken(boolean isAdmin) throws InvalidKeySpecException, NoSuchAlgorithmException;
 }
