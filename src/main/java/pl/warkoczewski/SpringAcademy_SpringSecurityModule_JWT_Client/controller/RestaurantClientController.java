@@ -13,7 +13,6 @@ import pl.warkoczewski.SpringAcademy_SpringSecurityModule_JWT_Client.model.Resta
 import pl.warkoczewski.SpringAcademy_SpringSecurityModule_JWT_Client.service.RestaurantService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class RestaurantClientController {
@@ -28,8 +27,9 @@ public class RestaurantClientController {
                 .map(restaurants -> new ResponseEntity<>(restaurants, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    /*
     @PostMapping("/addRestaurant")
     public ResponseEntity<Restaurant> addRestaurant(@RequestBody Restaurant restaurant){
         return new ResponseEntity<>(restaurantService.addRestaurant(restaurant), HttpStatus.CREATED);
-    }
+    }*/
 }

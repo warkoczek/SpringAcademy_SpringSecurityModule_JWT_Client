@@ -5,5 +5,5 @@ import pl.warkoczewski.SpringAcademy_SpringSecurityModule_JWT_Client.model.Resta
 
 public interface RestaurantDataExchanger {
     ResponseEntity<Restaurant[]> getRestaurants();
-    Restaurant addRestaurant(Restaurant restaurant);
+    Restaurant addRestaurant();
 }

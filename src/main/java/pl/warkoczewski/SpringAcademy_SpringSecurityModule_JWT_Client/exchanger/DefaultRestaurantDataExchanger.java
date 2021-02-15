@@ -30,7 +30,8 @@ public class DefaultRestaurantDataExchanger implements RestaurantDataExchanger {
         return "Bearer " + JWT.create().withClaim("admin", isAdmin).sign(algorithm);
     }
     @Override
-    public Restaurant addRestaurant(Restaurant restaurant) {
+    public Restaurant addRestaurant() {
+        Restaurant restaurant = new Restaurant("Red Lobster", "Berlin");
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.exchange("http://localhost:8080/addRestaurant", HttpMethod.POST, getHttpEntity(restaurant), Restaurant.class).getBody();
     }

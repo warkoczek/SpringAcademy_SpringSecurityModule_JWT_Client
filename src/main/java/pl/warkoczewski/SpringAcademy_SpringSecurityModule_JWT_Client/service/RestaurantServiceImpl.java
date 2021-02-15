@@ -30,12 +30,16 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Restaurant addRestaurant(Restaurant restaurant) {
-        return restaurantDataExchanger.addRestaurant(restaurant);
+    public Restaurant addRestaurant() {
+        return restaurantDataExchanger.addRestaurant();
     }
 
     @EventListener(ApplicationReadyEvent.class)
     public void printRestaurantsOut(){
         showRestaurants().ifPresent(System.out::println);
+    }
+    @EventListener(ApplicationReadyEvent.class)
+    public void printAddedRestaurant(){
+        System.out.println(addRestaurant().toString());
     }
 }
