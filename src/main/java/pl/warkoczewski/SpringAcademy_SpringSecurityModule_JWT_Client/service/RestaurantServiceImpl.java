@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import pl.warkoczewski.SpringAcademy_SpringSecurityModule_JWT_Client.exchanger.RestaurantDataExchanger;
 import pl.warkoczewski.SpringAcademy_SpringSecurityModule_JWT_Client.model.Restaurant;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,7 +22,7 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Optional<List<Restaurant>> showRestaurants() {
+    public Optional<List<Restaurant>> showRestaurants() throws InvalidKeySpecException, NoSuchAlgorithmException {
         Restaurant[] body = restaurantDataExchanger.getRestaurants().getBody();
         if(body == null){
             return Optional.empty();
@@ -30,16 +32,16 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
-    public Restaurant addRestaurant() {
+    public Restaurant addRestaurant() throws InvalidKeySpecException, NoSuchAlgorithmException {
         return restaurantDataExchanger.addRestaurant();
     }
 
     @EventListener(ApplicationReadyEvent.class)
-    public void printRestaurantsOut(){
+    public void printRestaurantsOut() throws InvalidKeySpecException, NoSuchAlgorithmException {
         showRestaurants().ifPresent(System.out::println);
     }
     @EventListener(ApplicationReadyEvent.class)
-    public void printAddedRestaurant(){
+    public void printAddedRestaurant() throws InvalidKeySpecException, NoSuchAlgorithmException {
         System.out.println(addRestaurant().toString());
     }
 }

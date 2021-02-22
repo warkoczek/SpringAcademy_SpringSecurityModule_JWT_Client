@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.warkoczewski.SpringAcademy_SpringSecurityModule_JWT_Client.model.Restaurant;
 import pl.warkoczewski.SpringAcademy_SpringSecurityModule_JWT_Client.service.RestaurantService;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 
 @RestController
@@ -22,7 +24,7 @@ public class RestaurantClientController {
         this.restaurantService = restaurantService;
     }
     @GetMapping("/restaurants")
-    public ResponseEntity<List<Restaurant>> printRestaurants(){
+    public ResponseEntity<List<Restaurant>> printRestaurants() throws InvalidKeySpecException, NoSuchAlgorithmException {
         return restaurantService.showRestaurants()
                 .map(restaurants -> new ResponseEntity<>(restaurants, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
